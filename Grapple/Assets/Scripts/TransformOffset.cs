@@ -17,14 +17,39 @@ public class TransformOffset : MonoBehaviour
             }
         } 
         set 
-        { 
-            offset = value; 
-        } 
+        {
+            if (useLocalCoords)
+            {
+                offset = value - transform.position;
+            }
+            else
+            {
+                offset = value;
+            }
+        }
+    }
+    public Vector3 LocalOffset
+    {
+        get
+        {
+            return offset - transform.position;
+        }
     }
     [SerializeField]
     private Vector3 offset = new Vector3(1f, 0f, 2f);
     [SerializeField]
     bool useLocalCoords;
+    public bool UseLocalCoords
+    {
+        get
+        {
+            return useLocalCoords;
+        }
+        set
+        {
+            useLocalCoords = value;
+        }
+    }
     void ScaleOffset(Vector3 scaleFactor)
     {
         // example.Offset = newOffset;
