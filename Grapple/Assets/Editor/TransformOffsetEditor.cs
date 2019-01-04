@@ -53,4 +53,30 @@ public class TransformOffsetEditor : Editor
     //         myTarget.Offset = displayOffset;
     //     }        
 	// }
+
+    public override void OnInspectorGUI()
+    {
+        TransformOffset myTarget = (TransformOffset)target;
+        Vector3 displayOffset = myTarget.Offset;
+        myTarget.useLocalCoords = EditorGUILayout.Toggle("UseLocalCoords", myTarget.useLocalCoords);
+        if (myTarget.useLocalCoords)
+        {
+            displayOffset = myTarget.Offset - myTarget.transform.position;
+        }        
+        // Vector3 offsetInput = EditorGUILayout.Vector3Field("Offset", myTarget.Offset);
+        displayOffset = EditorGUILayout.Vector3Field("Offset", displayOffset);
+        if (myTarget.useLocalCoords)
+        {
+            //offsetInput = myTarget.Offset - myTarget.transform.position;
+            myTarget.Offset = myTarget.transform.position + displayOffset;
+        }
+        // if (myTarget.useLocalCoords) 
+        // {
+        //     myTarget.Offset += myTarget.transform.position;
+        // }
+        else
+        {
+            myTarget.Offset = displayOffset;
+        }
+    }
 }

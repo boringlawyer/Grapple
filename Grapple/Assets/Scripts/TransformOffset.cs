@@ -14,7 +14,7 @@ public class TransformOffset : MonoBehaviour
             offset = value;
         }
     }
-    [SerializeField]
+    public bool useLocalCoords;
     private Vector3 offset = new Vector3(1f, 0f, 2f);
     public void ScaleOffset(Vector3 scaleFactor)
     {
