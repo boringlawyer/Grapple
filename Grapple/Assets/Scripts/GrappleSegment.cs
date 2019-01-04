@@ -22,7 +22,7 @@ public class GrappleSegment : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		GetComponent<TransformOffset>().Offset = GetComponent<FixedJoint2D>().anchor;
 	}
 
 	IEnumerator ShootGrapple()

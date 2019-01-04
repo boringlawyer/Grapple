@@ -7,50 +7,16 @@ public class TransformOffset : MonoBehaviour
     { 
         get 
         {
-            if (useLocalCoords)
-            {
-                return offset + transform.position;
-            }
-            else
-            {
-                return offset;
-            }
+            return offset;
         } 
         set 
         {
-            if (useLocalCoords)
-            {
-                offset = value - transform.position;
-            }
-            else
-            {
-                offset = value;
-            }
-        }
-    }
-    public Vector3 LocalOffset
-    {
-        get
-        {
-            return offset + transform.position;
+            offset = value;
         }
     }
     [SerializeField]
     private Vector3 offset = new Vector3(1f, 0f, 2f);
-    [SerializeField]
-    bool useLocalCoords;
-    public bool UseLocalCoords
-    {
-        get
-        {
-            return useLocalCoords;
-        }
-        set
-        {
-            useLocalCoords = value;
-        }
-    }
-    void ScaleOffset(Vector3 scaleFactor)
+    public void ScaleOffset(Vector3 scaleFactor)
     {
         // example.Offset = newOffset;
         Vector3 firstPosition = transform.position;
