@@ -32,7 +32,7 @@ public class TransformOffset : MonoBehaviour
     {
         get
         {
-            return offset - transform.position;
+            return offset + transform.position;
         }
     }
     [SerializeField]
