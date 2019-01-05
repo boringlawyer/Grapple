@@ -10,7 +10,7 @@ public class GrappleHook : MonoBehaviour
 	void Start () 
 	{
 		firstSegment = Instantiate(firstSegment, transform.position + new Vector3(.35f, 0, 0), Quaternion.identity);
-		firstSegment.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
+		firstSegment.GetComponent<HingeJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame

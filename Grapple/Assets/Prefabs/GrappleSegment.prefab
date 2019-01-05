@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 212785732196089706}
   - component: {fileID: 50524114652568916}
   - component: {fileID: 114008270417365806}
-  - component: {fileID: 255245985410940112}
   - component: {fileID: 61739513361497206}
+  - component: {fileID: 233970519834604002}
+  - component: {fileID: 114101638197210536}
   m_Layer: 8
   m_Name: GrappleSegment
   m_TagString: Untagged
@@ -38,8 +39,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1442927321281296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.585, y: 0.68, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.3, z: 1}
+  m_LocalPosition: {x: -1.2592745, y: -0.68366987, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,7 +101,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db5de7fbe8f58d4c86aee96f9d4f102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSegments: 10
+  maxSegments: 20
+--- !u!114 &114101638197210536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1442927321281296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d37f3a3a3ec5041974a00ab2f3e671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useLocalCoords: 0
 --- !u!212 &212785732196089706
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -147,8 +160,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!255 &255245985410940112
-FixedJoint2D:
+--- !u!233 &233970519834604002
+HingeJoint2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -161,6 +174,12 @@ FixedJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_DampingRatio: 1
-  m_Frequency: 10
+  m_ConnectedAnchor: {x: -1.2592745, y: -0.68366987}
+  m_UseMotor: 0
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 0
+  m_AngleLimits:
+    m_LowerAngle: 0
+    m_UpperAngle: 359
