@@ -38,5 +38,6 @@ public class TransformOffsetEditor : Editor
         {
             myTarget.Offset = displayOffset;
         }
+        myTarget.uniformDisplacement = EditorGUILayout.Toggle("Uniform Displacement", myTarget.uniformDisplacement);
     }
 }

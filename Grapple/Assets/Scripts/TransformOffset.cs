@@ -15,7 +15,7 @@ public class TransformOffset : MonoBehaviour
         }
     }
     public bool useLocalCoords;
-    bool uniformDisplacement = true;
+    public bool uniformDisplacement;
     private Vector3 offset = new Vector3(1f, 0f, 2f);
     public void ScaleOffset(Vector3 scaleFactor)
     {
