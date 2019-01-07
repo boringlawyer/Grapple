@@ -34,7 +34,7 @@ public class GrappleSegment : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		scaleOffset.offset = Anchor;
+		scaleOffset.Offset = Anchor;
 		 joint.anchor = new Vector3(0, 0);
 		joint.connectedAnchor = Vector2.zero;
 
