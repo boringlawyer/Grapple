@@ -3,28 +3,17 @@
 [ExecuteInEditMode]
 public class TransformOffset : MonoBehaviour
 {
-    public Vector3 Offset 
-    { 
-        get 
-        {
-            return offset;
-        } 
-        set 
-        {
-            offset = value;
-        }
-    }
     public bool useLocalCoords;
     public bool uniformDisplacement;
-    private Vector3 offset = new Vector3(1f, 0f, 2f);
+    public Vector3 offset = new Vector3(1f, 0f, 2f);
     public void ScaleOffset(Vector3 scaleFactor)
     {
         // example.Offset = newOffset;
         Vector3 firstPosition = transform.position;
-        transform.position = Offset;
+        transform.position = offset;
         // Vector3 deltaScale = new Vector3(scaleFactor.x / transform.localScale.x, scaleFactor.y / transform.localScale.y, scaleFactor.z / transform.localScale.z);
         transform.localScale = Vector3.Scale(scaleFactor, transform.localScale);
-        Vector3 offsetToOrigin = firstPosition - Offset;
+        Vector3 offsetToOrigin = firstPosition - offset;
         Vector3 scaledVec = Vector3.Scale(offsetToOrigin, scaleFactor);
         if (uniformDisplacement)
         {
@@ -39,7 +28,7 @@ public class TransformOffset : MonoBehaviour
                 scaledVec = new Vector3(scaledVec.x, scaledVec.x, scaledVec.z);
             }
         }
-        transform.position = Offset + scaledVec;
+        transform.position = offset + scaledVec;
         print(scaledVec);
     }
 
