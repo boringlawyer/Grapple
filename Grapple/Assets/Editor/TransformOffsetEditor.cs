@@ -4,25 +4,26 @@ using UnityEngine;
 [CustomEditor(typeof(TransformOffset)), CanEditMultipleObjects]
 public class TransformOffsetEditor : Editor
 {
-    // keeps track of two versions to detect changes
+    TransformOffset myTarget;
     Vector3 widgetPos = Vector3.zero;
     protected virtual void OnSceneGUI()
     {
-        TransformOffset example = (TransformOffset)target;
+        myTarget = (TransformOffset)target;
+        myTarget.CreateScriptableObject();
         EditorGUI.BeginChangeCheck();
-    	widgetPos = Handles.PositionHandle(example.Offset, Quaternion.identity);
-        Vector3 newScale = Handles.ScaleHandle(example.transform.localScale, widgetPos, Quaternion.identity, 1);
+    	widgetPos = Handles.PositionHandle(myTarget.Offset, Quaternion.identity);
+        Vector3 newScale = Handles.ScaleHandle(myTarget.transform.localScale, widgetPos, Quaternion.identity, 1);
 		if (EditorGUI.EndChangeCheck())
         {
-    		example.Offset = widgetPos;
- 			Vector3 deltaScale = new Vector3(newScale.x / example.transform.localScale.x, newScale.y / example.transform.localScale.y, newScale.z / example.transform.localScale.z);
-            example.ScaleOffset(deltaScale);
+    		myTarget.Offset = widgetPos;
+ 			Vector3 deltaScale = new Vector3(newScale.x / myTarget.transform.localScale.x, newScale.y / myTarget.transform.localScale.y, newScale.z / myTarget.transform.localScale.z);
+            myTarget.ScaleOffset(deltaScale);
         }
     }
-
     public override void OnInspectorGUI()
     {
-        TransformOffset myTarget = (TransformOffset)target;
+        myTarget = (TransformOffset)target;
+        myTarget.CreateScriptableObject();
         Vector3 displayOffset = myTarget.Offset;
         myTarget.UseLocalCoords = EditorGUILayout.Toggle("UseLocalCoords", myTarget.UseLocalCoords);
         if (myTarget.UseLocalCoords)
@@ -38,6 +39,6 @@ public class TransformOffsetEditor : Editor
         {
             myTarget.Offset = displayOffset;
         }
-        myTarget.UniformDisplacement = EditorGUILayout.Toggle("Uniform Displacement", myTarget.UniformDisplacement);
+        //myTarget.UniformDisplacement = EditorGUILayout.Toggle("Uniform Displacement", myTarget.UniformDisplacement);
     }
 }

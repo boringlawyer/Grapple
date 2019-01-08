@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEditor;
 
 [ExecuteInEditMode]
-public class TransformOffset : MonoBehaviour
+public class TransformOffset : MonoBehaviour, ICustomDuplicate
 {
-    TransformOffsetScriptableObject offsetSO;
+    public TransformOffsetScriptableObject offsetSO;
     public bool UseLocalCoords
     {
         get
@@ -38,6 +39,13 @@ public class TransformOffset : MonoBehaviour
         }
 
     }
+    void Start()
+    {
+        if (offsetSO == null)
+        {
+            offsetSO = Resources.Load("TransformOffsetData/" + gameObject.name) as TransformOffsetScriptableObject;
+        }
+    }
     public void ScaleOffset(Vector3 scaleFactor)
     {
         // example.Offset = newOffset;
@@ -71,4 +79,36 @@ public class TransformOffset : MonoBehaviour
             ScaleOffset(new Vector3(1.1f, 1, 1));
         }
     }
+
+    public void OnDuplicate()
+    {
+        offsetSO = null;
+        CreateScriptableObject();
+    }
+
+    public void CreateScriptableObject()
+    {
+        if (offsetSO == null && Resources.Load("Assets/Resources/TransformOffsetData/" + gameObject.name) == null)
+        {
+            offsetSO = ScriptableObject.CreateInstance<TransformOffsetScriptableObject>();
+            AssetDatabase.CreateAsset(offsetSO, "Assets/Resources/TransformOffsetData/" + gameObject.name + ".asset");
+            AssetDatabase.SaveAssets();
+            EditorUtility.FocusProjectWindow();
+        }
+    }
+
+    void OnDisable()
+    {
+        string path = "Assets/Resources/TransformOffsetData/" + gameObject.name + ".asset";
+        bool success = FileUtil.DeleteFileOrDirectory(path);
+        if (success)
+        {
+            print("Success");
+        }
+        else
+        {
+            print("Fail");
+        }
+    }
+
 }

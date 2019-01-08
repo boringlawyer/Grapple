@@ -12,6 +12,10 @@ public class TransformOffsetScriptableObject : ScriptableObject
 			return instances;
 		}
 	}
+	// public TransformOffsetScriptableObject() : base()
+	// {
+	// 	RegisterInstance()
+	// }
 	public bool useLocalCoords;
     public bool uniformDisplacement;
     public Vector3 offset;
