@@ -17,7 +17,10 @@ public class TransformOffsetEditor : Editor
         {
     		myTarget.Offset = widgetPos;
  			Vector3 deltaScale = new Vector3(newScale.x / myTarget.transform.localScale.x, newScale.y / myTarget.transform.localScale.y, newScale.z / myTarget.transform.localScale.z);
-            myTarget.ScaleOffset(deltaScale);
+            if (deltaScale != Vector3.one)
+            {
+                myTarget.ScaleOffset(deltaScale);
+            }
         }
     }
     public override void OnInspectorGUI()
@@ -39,6 +42,7 @@ public class TransformOffsetEditor : Editor
         {
             myTarget.Offset = displayOffset;
         }
+        myTarget.UniformDisplacement = EditorGUILayout.Toggle("Uniform Displacement", myTarget.UniformDisplacement);
         //myTarget.UniformDisplacement = EditorGUILayout.Toggle("Uniform Displacement", myTarget.UniformDisplacement);
     }
 }

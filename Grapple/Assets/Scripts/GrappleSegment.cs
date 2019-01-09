@@ -10,16 +10,20 @@ public class GrappleSegment : MonoBehaviour
 	GameObject nextSegment;
 	TransformOffset scaleOffset;
 	HingeJoint2D joint;
-	public Vector3 Anchor
+	Vector3 anchor;
+	public Vector3 Base
 	{
 		get
 		{
-			return transform.position - Vector3.Scale(transform.right / 2, transform.localScale);
+			// return transform.position + Vector3.Scale(transform.right / 2, transform.localScale);
+			return transform.position - transform.right * transform.localScale.x / 2;
+			
 		}
 	}
 	// Use this for initialization
 	void Start () 
 	{
+		// anchor = new Vector3(-.5f, 0, 0);
 		scaleOffset = GetComponent<TransformOffset>();
 		joint = GetComponent<HingeJoint2D>();
 		if (currentSegment < maxSegments)
@@ -34,8 +38,8 @@ public class GrappleSegment : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		scaleOffset.Offset = Anchor;
-		 joint.anchor = new Vector3(0, 0);
+		scaleOffset.Offset = Base;
+		 joint.anchor = new Vector3(-0.5f, 0, 0);
 		joint.connectedAnchor = Vector2.zero;
 
 		if (nextSegment != null)
@@ -43,11 +47,6 @@ public class GrappleSegment : MonoBehaviour
 			// joint.anchor = new Vector3(-1, 0);
 			//joint.connectedAnchor = Vector2.zero;
 			
-		}
-		if (Input.GetKeyDown(KeyCode.I))
-		{
-			// GetComponent<TransformOffset>().ScaleOffset(new Vector3(1.1f, 1, 1));
-			transform.localScale = new Vector3(transform.localScale.x * 2, transform.localScale.y, transform.localScale.z);
 		}
 	}
 

@@ -54,29 +54,35 @@ public class TransformOffset : MonoBehaviour, ICustomDuplicate
         // Vector3 deltaScale = new Vector3(scaleFactor.x / transform.localScale.x, scaleFactor.y / transform.localScale.y, scaleFactor.z / transform.localScale.z);
         transform.localScale = Vector3.Scale(scaleFactor, transform.localScale);
         Vector3 offsetToOrigin = firstPosition - Offset;
-        Vector3 scaledVec = Vector3.Scale(offsetToOrigin, scaleFactor);
+        //Vector3 scaledVec = Vector3.Scale(offsetToOrigin, scaleFactor);
+        Vector3 scaledVec = Vector3.zero;
         if (UniformDisplacement)
         {
             if (scaleFactor.x == 1)
             {
                 //scaledVec.x = scaledVec.y;
-                scaledVec = new Vector3(scaledVec.y, scaledVec.y, scaledVec.z);
+                //scaledVec = new Vector3(scaledVec.y, scaledVec.y, scaledVec.z);
+                scaledVec = offsetToOrigin * scaleFactor.y;
             }
             else if (scaleFactor.y == 1)
             {
                 //scaledVec.y = scaledVec.x;
-                scaledVec = new Vector3(scaledVec.x, scaledVec.x, scaledVec.z);
+                //scaledVec = new Vector3(scaledVec.x, scaledVec.x, scaledVec.z);
+                scaledVec = offsetToOrigin * scaleFactor.x;
             }
         }
+        else
+        {
+            scaledVec = Vector3.Scale(offsetToOrigin, scaleFactor);
+        }
         transform.position = Offset + scaledVec;
-        print(scaledVec);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            ScaleOffset(new Vector3(1.1f, 1, 1));
+            ScaleOffset(new Vector3(1.1f, 1f, 1));
         }
     }
 
