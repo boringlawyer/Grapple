@@ -39,6 +39,10 @@ public class TransformOffset : MonoBehaviour, ICustomDuplicate
         }
 
     }
+    void OnEnable()
+    {
+        CreateScriptableObject();
+    }
     void Start()
     {
         if (offsetSO == null)

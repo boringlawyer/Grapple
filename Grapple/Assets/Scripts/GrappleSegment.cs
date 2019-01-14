@@ -28,7 +28,7 @@ public class GrappleSegment : MonoBehaviour
 		joint = GetComponent<HingeJoint2D>();
 		if (currentSegment < maxSegments)
 		{
-			nextSegment = Instantiate(this.gameObject, transform.position + new Vector3(transform.localScale.x / 2, 0, 0), Quaternion.identity);
+			nextSegment = Instantiate(this.gameObject, transform.position + new Vector3(transform.localScale.x, 0, 0), Quaternion.identity);
 			//nextSegment = Instantiate(this.gameObject, transform.localPosition + new Vector3(.03f, 0, 0), Quaternion.identity);
 			currentSegment += 1;
 			nextSegment.GetComponent<HingeJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
@@ -39,15 +39,17 @@ public class GrappleSegment : MonoBehaviour
 	void Update () 
 	{
 		scaleOffset.Offset = Base;
-		 joint.anchor = new Vector3(-0.5f, 0, 0);
+		//joint.anchor = new Vector3(-0.5f, 0, 0);
 		joint.connectedAnchor = Vector2.zero;
 
-		if (nextSegment != null)
-		{
-			// joint.anchor = new Vector3(-1, 0);
-			//joint.connectedAnchor = Vector2.zero;
+// 		if (nextSegment != null)
+// 		{
+// //			joint.connectedAnchor = nextSegment.transform.position - nextSegment.transform.right * nextSegment.transform.localScale.x;		
+// 			joint.connectedAnchor = new Vector3(-.5f, 0, 0);		
+// 			// joint.anchor = new Vector3(-1, 0);
+// 			//joint.connectedAnchor = Vector2.zero;
 			
-		}
+// 		}
 	}
 
 	IEnumerator ShootGrapple()

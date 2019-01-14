@@ -9,7 +9,7 @@ public class TransformOffsetEditor : Editor
     protected virtual void OnSceneGUI()
     {
         myTarget = (TransformOffset)target;
-        myTarget.CreateScriptableObject();
+        //myTarget.CreateScriptableObject();
         EditorGUI.BeginChangeCheck();
     	widgetPos = Handles.PositionHandle(myTarget.Offset, Quaternion.identity);
         Vector3 newScale = Handles.ScaleHandle(myTarget.transform.localScale, widgetPos, Quaternion.identity, 1);
@@ -26,7 +26,7 @@ public class TransformOffsetEditor : Editor
     public override void OnInspectorGUI()
     {
         myTarget = (TransformOffset)target;
-        myTarget.CreateScriptableObject();
+        //myTarget.CreateScriptableObject();
         Vector3 displayOffset = myTarget.Offset;
         myTarget.UseLocalCoords = EditorGUILayout.Toggle("UseLocalCoords", myTarget.UseLocalCoords);
         if (myTarget.UseLocalCoords)
